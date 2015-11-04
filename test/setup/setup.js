@@ -1,8 +1,8 @@
-module.exports = function(root) {
-  root = root ? root : this;
+module.exports = function setup(r) {
+  const root = r ? r : this;
   root.expect = root.chai.expect;
 
-  beforeEach(function() {
+  beforeEach(() => {
     // Using these globally-available Sinon features is preferrable, as they're
     // automatically restored for you in the subsequent `afterEach`
     root.sandbox = root.sinon.sandbox.create();
@@ -14,7 +14,7 @@ module.exports = function(root) {
     root.useFakeServer = root.sandbox.useFakeServer.bind(root.sandbox);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     delete root.stub;
     delete root.spy;
     root.sandbox.restore();

@@ -54,10 +54,6 @@ function lintTest() {
   return lint('test/**/*.js');
 }
 
-function lintGulpfile() {
-  return lint('gulpfile.babel.js');
-}
-
 function build() {
   return gulp.src(path.join('src', config.entryFileName + '.js'))
     .pipe($.plumber())
@@ -178,11 +174,8 @@ gulp.task('lint-src', lintSrc);
 // Lint our test code
 gulp.task('lint-test', lintTest);
 
-// Lint this file
-gulp.task('lint-gulpfile', lintGulpfile);
-
 // Lint everything
-gulp.task('lint', ['lint-src', 'lint-test', 'lint-gulpfile']);
+gulp.task('lint', ['lint-src', 'lint-test']);
 
 // Build two versions of the library
 gulp.task('build', ['lint', 'clean'], build);
