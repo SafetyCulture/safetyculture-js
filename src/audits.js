@@ -8,12 +8,19 @@ export default function Audits(api) {
     /**
     * Returns all audits, with options.
     * @param {object} opts Options object
-    * @param {object} opts.since Find all audits modified since date
-    * @returns {Promise} Resolves to array of audits,
+    * @param {string} opts.since Modified since date (ISO datestring)
+    * @param {string} opts.order Order of audits, default 'asc'
+    * @returns {Promise} Resolves to array of audits ids and modified_at fields,
     *                    Rejects with an error from API.
     */
-    findAll: ({ since } = {}) =>
-      api.get('/audits/search', { qs: { modified_after: since } })
+    findAll: ({ since, order } = {}) =>
+      api.get('/audits/search', {
+        qs: {
+          modified_after: since,
+          field: ['audit_id', 'modified_at'],
+          order: order ? order : 'asc'
+        }
+      })
       .then(body => body.audits)
   };
 }

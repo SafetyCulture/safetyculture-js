@@ -24,7 +24,38 @@ describe('Audits', () => {
 
       return Audits({ get }).findAll({ since })
       .then(() => {
-        expect(get.calledWith('/audits/search', { qs: { modified_after: since }})).to.be.true;
+        const qs = {
+          modified_after: since,
+          field: ['audit_id', 'modified_at'],
+          order: 'asc'
+        };
+        expect(get.calledWith('/audits/search', { qs: qs })).to.be.true;
+      });
+    });
+
+    it('should pass order into querystring', () => {
+      const order = 'desc';
+
+      return Audits({ get }).findAll({ order })
+      .then(() => {
+        const qs = {
+          modified_after: undefined,
+          field: ['audit_id', 'modified_at'],
+          order
+        };
+        expect(get.calledWith('/audits/search', { qs: qs })).to.be.true;
+      });
+    });
+
+    it('should default order to asc in querystring', () => {
+      return Audits({ get }).findAll()
+      .then(() => {
+        const qs = {
+          modified_after: undefined,
+          field: ['audit_id', 'modified_at'],
+          order: 'asc'
+        };
+        expect(get.calledWith('/audits/search', { qs: qs })).to.be.true;
       });
     });
   });
