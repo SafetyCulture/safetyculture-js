@@ -13,14 +13,13 @@ export default function Audits(api) {
     * @returns {Promise} Resolves to array of audits ids and modified_at fields,
     *                    Rejects with an error from API.
     */
-    findAll: ({ since, order } = {}) =>
-      api.get('/audits/search', {
-        qs: {
-          modified_after: since,
-          field: ['audit_id', 'modified_at'],
-          order: order ? order : 'asc'
-        }
-      })
-      .then(body => body.audits)
+    findAll: ({ since, order } = {}) => api.get('/audits/search', {
+      qs: {
+        modified_after: since,
+        field: ['audit_id', 'modified_at'],
+        order: order ? order : 'asc'
+      }
+    })
+    .then(body => body.audits)
   };
 }
