@@ -7,11 +7,12 @@ export function generateToken(username, password) {
   return rp({
     method: 'POST',
     uri: BASE_URL + '/auth',
-    body: {
+    form: {
       username,
       password,
       grant_type: 'password'
-    }
+    },
+    json: true
   })
   .then(body => body.access_token)
   .catch(() => { throw new Error('Invalid username or password'); });

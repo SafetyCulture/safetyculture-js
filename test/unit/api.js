@@ -29,9 +29,9 @@ describe('api', () => {
       const testUsername = 'john@smith.com';
       const testPassword = 'password123';
 
-      api.__Rewire__('rp', ({ body }) => {
-        expect(body.username).to.equal(testUsername);
-        expect(body.password).to.equal(testPassword);
+      api.__Rewire__('rp', ({ form }) => {
+        expect(form.username).to.equal(testUsername);
+        expect(form.password).to.equal(testPassword);
         return Promise.resolve(expectedBody);
       });
 
