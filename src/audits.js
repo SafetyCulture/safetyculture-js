@@ -20,6 +20,14 @@ export default function Audits(api) {
         order: order ? order : 'asc'
       }
     })
-    .then(body => body.audits)
+    .then(body => body.audits),
+
+    /**
+    * Returns an audit by id
+    * @param {string} id Audit id
+    * @returns {Promise} Resolves to requested audit,
+    *                    Rejects with an error from API.
+    */
+    findById: (id) => api.get(`/audits/${id}`)
   };
 }

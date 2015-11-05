@@ -59,4 +59,15 @@ describe('Audits', () => {
       });
     });
   });
+
+  describe('#findById', () => {
+    const get = sinon.stub().returns(Promise.resolve());
+
+    it('send a request with the right id', () => {
+      return Audits({ get }).findById(1)
+      .then(() => {
+        expect(get.calledWith('/audits/1')).to.be.true;
+      });
+    });
+  });
 });
