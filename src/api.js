@@ -3,6 +3,13 @@ import _ from 'lodash';
 
 export const BASE_URL = 'https://api.safetyculture.io';
 
+/**
+* Generates an access token from a SafetyCulture username and password
+* @param {string} username
+* @param {string} password
+* @returns {Promise} Resolves with access token
+*                    Rejects with error if login failed
+*/
 export function generateToken(username, password) {
   return rp({
     method: 'POST',
