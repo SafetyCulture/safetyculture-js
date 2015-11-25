@@ -58,6 +58,7 @@ function build() {
   return gulp.src(path.join('src', config.entryFileName + '.js'))
     .pipe($.plumber())
     .pipe(webpackStream({
+      target: 'node',
       output: {
         filename: exportFileName + '.js',
         libraryTarget: 'umd',
@@ -65,7 +66,9 @@ function build() {
       },
       module: {
         loaders: [
-          { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+          { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+          // This allows the test setup scripts to load `package.json`
+          { test: /\.json$/, loader: 'json-loader' }
         ]
       },
       devtool: 'source-map'
