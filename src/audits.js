@@ -5,7 +5,7 @@ import _ from 'lodash';
 * @param {object} api Valid api object
 * @returns {object} audits Methods to interact with audits on API
 */
-export default function Audits(api) {
+export default function Audits(api, logger) {
   return {
     /**
     * Returns all audits, with options.
@@ -16,14 +16,18 @@ export default function Audits(api) {
     * @returns {Promise} Resolves to array of audits ids and modified_at fields,
     *                    Rejects with an error from API.
     */
-    findAll: ({ since, order, params } = {}) => api.get('/audits/search', {
-      qs: _.merge({
+    findAll: ({ since, order, params } = {}) => {
+      const qs = _.merge({
         modified_after: since,
         field: ['audit_id', 'modified_at'],
         order: order ? order : 'asc'
-      }, params ? params : {})
-    })
-    .then(body => body.audits),
+      }, params ? params : {});
+
+      logger.info(`Search Request: ${JSON.stringify(qs)}`);
+
+      return api.get('/audits/search', {qs: qs})
+                .then(body => body.audits);
+    },
 
     /**
     * Returns an audit by id

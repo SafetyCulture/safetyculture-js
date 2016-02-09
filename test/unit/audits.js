@@ -6,14 +6,14 @@ describe('Audits', () => {
     const get = sinon.stub().returns(Promise.resolve({ audits }));
 
     it('should return all audits from request', () => {
-      return Audits({ get }).findAll()
+      return Audits({ get }, console).findAll()
       .then(res => {
         expect(res).to.equal(audits);
       });
     });
 
     it('should call api with correct endpoint', () => {
-      return Audits({ get }).findAll()
+      return Audits({ get }, console).findAll()
       .then(() => {
         expect(get.calledWith('/audits/search')).to.be.true;
       });
@@ -22,7 +22,7 @@ describe('Audits', () => {
     it('should pass since into querystring', () => {
       const since = new Date().toISOString();
 
-      return Audits({ get }).findAll({ since })
+      return Audits({ get }, console).findAll({ since })
       .then(() => {
         const qs = {
           modified_after: since,
@@ -36,7 +36,7 @@ describe('Audits', () => {
     it('should pass order into querystring', () => {
       const order = 'desc';
 
-      return Audits({ get }).findAll({ order })
+      return Audits({ get }, console).findAll({ order })
       .then(() => {
         const qs = {
           modified_after: undefined,
@@ -48,7 +48,7 @@ describe('Audits', () => {
     });
 
     it('should default order to asc in querystring', () => {
-      return Audits({ get }).findAll()
+      return Audits({ get }, console).findAll()
       .then(() => {
         const qs = {
           modified_after: undefined,
@@ -63,7 +63,7 @@ describe('Audits', () => {
       const template = 'TEST';
       let params = {template: template};
 
-      return Audits({ get }).findAll({ params })
+      return Audits({ get }, console).findAll({ params })
       .then(() => {
         const qs = {
           modified_after: undefined,
@@ -80,7 +80,7 @@ describe('Audits', () => {
     const get = sinon.stub().returns(Promise.resolve());
 
     it('send a request with the right id', () => {
-      return Audits({ get }).findById(1)
+      return Audits({ get }, console).findById(1)
       .then(() => {
         expect(get.calledWith('/audits/1')).to.be.true;
       });
