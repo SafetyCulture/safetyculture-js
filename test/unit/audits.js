@@ -58,6 +58,22 @@ describe('Audits', () => {
         expect(get.calledWith('/audits/search', { qs: qs })).to.be.true;
       });
     });
+
+    it('should include additional parameters in the querystring', () => {
+      const template = 'TEST';
+      let params = {template: template};
+
+      return Audits({ get }).findAll({ params })
+      .then(() => {
+        const qs = {
+          modified_after: undefined,
+          field: ['audit_id', 'modified_at'],
+          order: 'asc',
+          template: template
+        };
+        expect(get.calledWith('/audits/search', { qs: qs })).to.be.true;
+      });
+    });
   });
 
   describe('#findById', () => {

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
 * Generates Audits object with methods using passed api
 * @param {object} api Valid api object
@@ -10,15 +12,16 @@ export default function Audits(api) {
     * @param {object} opts Options object
     * @param {string} opts.since Modified since date (ISO datestring)
     * @param {string} opts.order Order of audits, default 'asc'
+    * @param {object} opts.params Additional parameters to be passed into the querystring
     * @returns {Promise} Resolves to array of audits ids and modified_at fields,
     *                    Rejects with an error from API.
     */
-    findAll: ({ since, order } = {}) => api.get('/audits/search', {
-      qs: {
+    findAll: ({ since, order, params } = {}) => api.get('/audits/search', {
+      qs: _.merge({
         modified_after: since,
         field: ['audit_id', 'modified_at'],
         order: order ? order : 'asc'
-      }
+      }, params ? params : {})
     })
     .then(body => body.audits),
 
