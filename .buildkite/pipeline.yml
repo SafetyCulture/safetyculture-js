@@ -1,0 +1,5 @@
+steps:
+  - name: "Test"
+    command: "n lts && npm install && npm test"
+    agents:
+      node: "true"
