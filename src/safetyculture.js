@@ -1,5 +1,5 @@
 import Client from './client';
 
-export {
+export default {
   Client
 };
