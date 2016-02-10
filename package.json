@@ -7,6 +7,7 @@
     "lint": "./node_modules/.bin/eslint src/ test/",
     "test": "npm run lint && BABEL_ENV=TEST mocha --compilers js:babel-core/register",
     "compile": "babel --presets es2015 -d lib/ src/",
+    "distribute": "npm run prepublish && webpack",
     "prepublish": "npm run compile"
   },
   "repository": {
@@ -37,7 +38,7 @@
     "sinon": "^1.12.2",
     "sinon-chai": "^2.7.0",
     "vinyl-source-stream": "^1.0.0",
-    "webpack": "^1.12.2",
+    "webpack": "^1.12.13",
     "webpack-stream": "^2.1.1"
   },
   "babelBoilerplateOptions": {
@@ -56,6 +57,7 @@
   },
   "dependencies": {
     "babel-template": "^6.3.13",
+    "babel-loader": "^6.2.2",
     "babel-types": "^6.3.14",
     "lodash": "^3.10.1",
     "request-promise": "^1.0.2"

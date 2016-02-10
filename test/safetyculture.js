@@ -7,6 +7,7 @@ import SafetyCulture from '../src/safetyculture';
 
 describe('SafetyCulture', () => {
   it('should export a Client', () => {
+    expect(SafetyCulture).to.exist;
     expect(SafetyCulture.Client).to.exist;
   });
 });
