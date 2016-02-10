@@ -16,7 +16,7 @@ const $ = loadPlugins();
 // Gather the library data from `package.json`
 const config = manifest.babelBoilerplateOptions;
 const mainFile = manifest.main;
-const destinationFolder = path.dirname(mainFile);
+const destinationFolder = path.resolve('dist/');
 const exportFileName = path.basename(mainFile, path.extname(mainFile));
 
 // Remove a directory

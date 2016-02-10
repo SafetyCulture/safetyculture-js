@@ -54,6 +54,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
@@ -64,106 +66,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _client2 = _interopRequireDefault(_client);
 	
-	var __$Getters__ = [];
-	var __$Setters__ = [];
-	var __$Resetters__ = [];
-	
-	function __GetDependency__(name) {
-	  return __$Getters__[name]();
-	}
-	
-	function __Rewire__(name, value) {
-	  __$Setters__[name](value);
-	}
-	
-	function __ResetDependency__(name) {
-	  __$Resetters__[name]();
-	}
-	
-	var __RewireAPI__ = {
-	  '__GetDependency__': __GetDependency__,
-	  '__get__': __GetDependency__,
-	  '__Rewire__': __Rewire__,
-	  '__set__': __Rewire__,
-	  '__ResetDependency__': __ResetDependency__
-	};
-	var Client = _client2['default'];
-	
-	__$Getters__['Client'] = function () {
-	  return Client;
-	};
-	
-	__$Setters__['Client'] = function (value) {
-	  Client = value;
-	};
-	
-	__$Resetters__['Client'] = function () {
-	  Client = _client2['default'];
-	};
-	
 	var SafetyCulture = {
-	  Client: Client
+	  Client: _client2['default']
 	};
 	
-	var _SafetyCulture = SafetyCulture;
-	
-	__$Getters__['SafetyCulture'] = function () {
-	  return SafetyCulture;
-	};
-	
-	__$Setters__['SafetyCulture'] = function (value) {
-	  SafetyCulture = value;
-	};
-	
-	__$Resetters__['SafetyCulture'] = function () {
-	  SafetyCulture = _SafetyCulture;
-	};
-	
-	var _defaultExport = SafetyCulture;
-	
-	if (typeof _defaultExport === 'object' || typeof _defaultExport === 'function') {
-	  Object.defineProperty(_defaultExport, '__Rewire__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__set__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__ResetDependency__', {
-	    'value': __ResetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__GetDependency__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__get__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__RewireAPI__', {
-	    'value': __RewireAPI__,
-	    'enumberable': false
-	  });
-	}
-
-	exports['default'] = _defaultExport;
-	exports.__GetDependency__ = __GetDependency__;
-	exports.__get__ = __GetDependency__;
-	exports.__Rewire__ = __Rewire__;
-	exports.__set__ = __Rewire__;
-	exports.__ResetDependency__ = __ResetDependency__;
-	exports.__RewireAPI__ = __RewireAPI__;
+	exports['default'] = SafetyCulture;
 	module.exports = exports['default'];
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
+	exports['default'] = Client;
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -175,58 +94,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _audits2 = _interopRequireDefault(_audits);
 	
-	var Client = _ClientOrig;
-	var __$Getters__ = [];
-	var __$Setters__ = [];
-	var __$Resetters__ = [];
-	
-	function __GetDependency__(name) {
-	  return __$Getters__[name]();
-	}
-	
-	function __Rewire__(name, value) {
-	  __$Setters__[name](value);
-	}
-	
-	function __ResetDependency__(name) {
-	  __$Resetters__[name]();
-	}
-	
-	var __RewireAPI__ = {
-	  '__GetDependency__': __GetDependency__,
-	  '__get__': __GetDependency__,
-	  '__Rewire__': __Rewire__,
-	  '__set__': __Rewire__,
-	  '__ResetDependency__': __ResetDependency__
-	};
-	var Api = _api2['default'];
-	
-	__$Getters__['Api'] = function () {
-	  return Api;
-	};
-	
-	__$Setters__['Api'] = function (value) {
-	  Api = value;
-	};
-	
-	__$Resetters__['Api'] = function () {
-	  Api = _api2['default'];
-	};
-	
-	var Audits = _audits2['default'];
-	
-	__$Getters__['Audits'] = function () {
-	  return Audits;
-	};
-	
-	__$Setters__['Audits'] = function (value) {
-	  Audits = value;
-	};
-	
-	__$Resetters__['Audits'] = function () {
-	  Audits = _audits2['default'];
-	};
-	
 	var DEFAULT_LOGGER = { info: function info() {},
 	  error: function error() {} };
 	/**
@@ -235,93 +102,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	* @param {string} options.token SafetyCulture access token
 	* @returns {object} SafetyCulture API Client
 	*/
-	var _DEFAULT_LOGGER = DEFAULT_LOGGER;
 	
-	__$Getters__['DEFAULT_LOGGER'] = function () {
-	  return DEFAULT_LOGGER;
-	};
-	
-	__$Setters__['DEFAULT_LOGGER'] = function (value) {
-	  DEFAULT_LOGGER = value;
-	};
-	
-	__$Resetters__['DEFAULT_LOGGER'] = function () {
-	  DEFAULT_LOGGER = _DEFAULT_LOGGER;
-	};
-	
-	function _ClientOrig(_ref) {
+	function Client(_ref) {
 	  var token = _ref.token;
 	  var _ref$logger = _ref.logger;
 	  var logger = _ref$logger === undefined ? DEFAULT_LOGGER : _ref$logger;
 	
 	  logger.info('SafetyCulture Client ' + logger);
 	
-	  var api = Api({ token: token });
+	  var api = (0, _api2['default'])({ token: token });
 	
 	  return {
-	    audits: Audits(api, logger)
+	    audits: (0, _audits2['default'])(api, logger)
 	  };
 	}
 	
-	var _Client = Client;
-	
-	__$Getters__['Client'] = function () {
-	  return Client;
-	};
-	
-	__$Setters__['Client'] = function (value) {
-	  exports.Client = Client = value;
-	};
-	
-	__$Resetters__['Client'] = function () {
-	  exports.Client = Client = _Client;
-	};
-	
-	var _defaultExport = Client;
-	
-	if (typeof _defaultExport === 'object' || typeof _defaultExport === 'function') {
-	  Object.defineProperty(_defaultExport, '__Rewire__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__set__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__ResetDependency__', {
-	    'value': __ResetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__GetDependency__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__get__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__RewireAPI__', {
-	    'value': __RewireAPI__,
-	    'enumberable': false
-	  });
-	}
-
-	exports['default'] = _defaultExport;
-	exports.__GetDependency__ = __GetDependency__;
-	exports.__get__ = __GetDependency__;
-	exports.__Rewire__ = __Rewire__;
-	exports.__set__ = __Rewire__;
-	exports.__ResetDependency__ = __ResetDependency__;
-	exports.__RewireAPI__ = __RewireAPI__;
 	module.exports = exports['default'];
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
+	exports.generateToken = generateToken;
+	exports['default'] = Api;
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -333,76 +141,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var generateToken = _generateTokenOrig;
-	var Api = _ApiOrig;
-	var __$Getters__ = [];
-	var __$Setters__ = [];
-	var __$Resetters__ = [];
-	
-	function __GetDependency__(name) {
-	  return __$Getters__[name]();
-	}
-	
-	function __Rewire__(name, value) {
-	  __$Setters__[name](value);
-	}
-	
-	function __ResetDependency__(name) {
-	  __$Resetters__[name]();
-	}
-	
-	var __RewireAPI__ = {
-	  '__GetDependency__': __GetDependency__,
-	  '__get__': __GetDependency__,
-	  '__Rewire__': __Rewire__,
-	  '__set__': __Rewire__,
-	  '__ResetDependency__': __ResetDependency__
-	};
-	var rp = _requestPromise2['default'];
-	
-	__$Getters__['rp'] = function () {
-	  return rp;
-	};
-	
-	__$Setters__['rp'] = function (value) {
-	  rp = value;
-	};
-	
-	__$Resetters__['rp'] = function () {
-	  rp = _requestPromise2['default'];
-	};
-	
-	var _ = _lodash2['default'];
-	
-	__$Getters__['_'] = function () {
-	  return _;
-	};
-	
-	__$Setters__['_'] = function (value) {
-	  _ = value;
-	};
-	
-	__$Resetters__['_'] = function () {
-	  _ = _lodash2['default'];
-	};
-	
 	var BASE_URL = 'https://api.safetyculture.io';
 	
-	var _BASE_URL = BASE_URL;
-	
-	__$Getters__['BASE_URL'] = function () {
-	  return BASE_URL;
-	};
-	
-	__$Setters__['BASE_URL'] = function (value) {
-	  exports.BASE_URL = BASE_URL = value;
-	};
-	
-	__$Resetters__['BASE_URL'] = function () {
-	  exports.BASE_URL = BASE_URL = _BASE_URL;
-	};
-	
-	exports.BASE_URL = _BASE_URL;
+	exports.BASE_URL = BASE_URL;
 	/**
 	* Generates an access token from a SafetyCulture username and password
 	* @param {string} username
@@ -411,8 +152,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	*                    Rejects with error if login failed
 	*/
 	
-	function _generateTokenOrig(username, password) {
-	  return rp({
+	function generateToken(username, password) {
+	  return (0, _requestPromise2['default'])({
 	    method: 'POST',
 	    uri: BASE_URL + '/auth',
 	    form: {
@@ -428,22 +169,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 	}
 	
-	var _generateToken = generateToken;
-	
-	__$Getters__['generateToken'] = function () {
-	  return generateToken;
-	};
-	
-	__$Setters__['generateToken'] = function (value) {
-	  exports.generateToken = generateToken = value;
-	};
-	
-	__$Resetters__['generateToken'] = function () {
-	  exports.generateToken = generateToken = _generateToken;
-	};
-	
-	exports.generateToken = _generateTokenOrig;
-	
 	/**
 	* Create a SafetyCulture Api client
 	* @param {object} opts The following options
@@ -451,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	* @returns {object} api Api client
 	*/
 	
-	function _ApiOrig(_ref) {
+	function Api(_ref) {
 	  var token = _ref.token;
 	
 	  var defaultOptions = {
@@ -470,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    *                    Rejects with an error from API.
 	    */
 	    post: function post(endpoint, options) {
-	      return rp(_.assign({}, defaultOptions, {
+	      return (0, _requestPromise2['default'])(_lodash2['default'].assign({}, defaultOptions, {
 	        method: 'POST',
 	        uri: BASE_URL + endpoint
 	      }, options));
@@ -483,64 +208,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    *                    Rejects with an error from API.
 	    */
 	    get: function get(endpoint, options) {
-	      return rp(_.assign({}, defaultOptions, {
+	      return (0, _requestPromise2['default'])(_lodash2['default'].assign({}, defaultOptions, {
 	        uri: BASE_URL + endpoint
 	      }, options));
 	    }
 	
 	  };
 	}
-	
-	var _Api = Api;
-	
-	__$Getters__['Api'] = function () {
-	  return Api;
-	};
-	
-	__$Setters__['Api'] = function (value) {
-	  exports.Api = Api = value;
-	};
-	
-	__$Resetters__['Api'] = function () {
-	  exports.Api = Api = _Api;
-	};
-	
-	var _defaultExport = Api;
-	
-	if (typeof _defaultExport === 'object' || typeof _defaultExport === 'function') {
-	  Object.defineProperty(_defaultExport, '__Rewire__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__set__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__ResetDependency__', {
-	    'value': __ResetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__GetDependency__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__get__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__RewireAPI__', {
-	    'value': __RewireAPI__,
-	    'enumberable': false
-	  });
-	}
-
-	exports['default'] = _defaultExport;
-	exports.__GetDependency__ = __GetDependency__;
-	exports.__get__ = __GetDependency__;
-	exports.__Rewire__ = __Rewire__;
-	exports.__set__ = __Rewire__;
-	exports.__ResetDependency__ = __ResetDependency__;
-	exports.__RewireAPI__ = __RewireAPI__;
 
 /***/ },
 /* 3 */
@@ -57621,9 +57295,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
+	exports['default'] = Audits;
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -57636,45 +57313,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	* @param {object} api Valid api object
 	* @returns {object} audits Methods to interact with audits on API
 	*/
-	var Audits = _AuditsOrig;
-	var __$Getters__ = [];
-	var __$Setters__ = [];
-	var __$Resetters__ = [];
 	
-	function __GetDependency__(name) {
-	  return __$Getters__[name]();
-	}
-	
-	function __Rewire__(name, value) {
-	  __$Setters__[name](value);
-	}
-	
-	function __ResetDependency__(name) {
-	  __$Resetters__[name]();
-	}
-	
-	var __RewireAPI__ = {
-	  '__GetDependency__': __GetDependency__,
-	  '__get__': __GetDependency__,
-	  '__Rewire__': __Rewire__,
-	  '__set__': __Rewire__,
-	  '__ResetDependency__': __ResetDependency__
-	};
-	var _ = _lodash2['default'];
-	
-	__$Getters__['_'] = function () {
-	  return _;
-	};
-	
-	__$Setters__['_'] = function (value) {
-	  _ = value;
-	};
-	
-	__$Resetters__['_'] = function () {
-	  _ = _lodash2['default'];
-	};
-	
-	function _AuditsOrig(api, logger) {
+	function Audits(api, logger) {
 	  return {
 	    /**
 	    * Returns all audits, with options.
@@ -57692,7 +57332,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var order = _ref.order;
 	      var params = _ref.params;
 	
-	      var qs = _.merge({
+	      var qs = _lodash2['default'].merge({
 	        modified_after: since,
 	        field: ['audit_id', 'modified_at'],
 	        order: order ? order : 'asc'
@@ -57717,56 +57357,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	}
 	
-	var _Audits = Audits;
-	
-	__$Getters__['Audits'] = function () {
-	  return Audits;
-	};
-	
-	__$Setters__['Audits'] = function (value) {
-	  exports.Audits = Audits = value;
-	};
-	
-	__$Resetters__['Audits'] = function () {
-	  exports.Audits = Audits = _Audits;
-	};
-	
-	var _defaultExport = Audits;
-	
-	if (typeof _defaultExport === 'object' || typeof _defaultExport === 'function') {
-	  Object.defineProperty(_defaultExport, '__Rewire__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__set__', {
-	    'value': __Rewire__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__ResetDependency__', {
-	    'value': __ResetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__GetDependency__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__get__', {
-	    'value': __GetDependency__,
-	    'enumberable': false
-	  });
-	  Object.defineProperty(_defaultExport, '__RewireAPI__', {
-	    'value': __RewireAPI__,
-	    'enumberable': false
-	  });
-	}
-
-	exports['default'] = _defaultExport;
-	exports.__GetDependency__ = __GetDependency__;
-	exports.__get__ = __GetDependency__;
-	exports.__Rewire__ = __Rewire__;
-	exports.__set__ = __Rewire__;
-	exports.__ResetDependency__ = __ResetDependency__;
-	exports.__RewireAPI__ = __RewireAPI__;
 	module.exports = exports['default'];
 
 /***/ }
