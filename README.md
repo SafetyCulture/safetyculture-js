@@ -1,4 +1,4 @@
-# javascript-sdk
+# SafetyCulture (JS SDK)
 
 Javascript SDK for SafetyCulture API
 
