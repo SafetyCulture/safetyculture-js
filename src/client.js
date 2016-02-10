@@ -1,7 +1,7 @@
 import Api from './api';
 import Audits from './audits';
 
-const DEFAULT_LOGGER = {info: () => { console.log(arguments); },
+const DEFAULT_LOGGER = {info: () => {},
                         error: () => {}};
 /**
 * Generates Client methods based off passed in token
