@@ -1,7 +1,5 @@
 import Client from './client';
 
-const SafetyCulture = {
+export {
   Client
 };
-
-export default SafetyCulture;

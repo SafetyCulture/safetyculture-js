@@ -1,0 +1,8 @@
+{
+  "presets": ["es2015"],
+  "env": {
+    "TEST": {
+      "plugins": ["babel-plugin-rewire"]
+    }
+  }
+}

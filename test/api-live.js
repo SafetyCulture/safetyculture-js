@@ -1,4 +1,9 @@
-import { generateToken } from '../../src/api';
+import chai, { expect } from 'chai';
+import sinonChai from 'sinon-chai';
+
+chai.use(sinonChai);
+
+import { generateToken } from '../src/api';
 
 // Fill in for live tests
 const USER = '';

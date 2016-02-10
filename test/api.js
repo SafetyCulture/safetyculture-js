@@ -1,4 +1,9 @@
-import api, { generateToken, BASE_URL } from '../../src/api';
+import chai, { expect } from 'chai';
+import sinonChai from 'sinon-chai';
+
+chai.use(sinonChai);
+
+import api, { generateToken, BASE_URL } from '../src/api';
 
 describe('api', () => {
   describe('#generateToken', () => {

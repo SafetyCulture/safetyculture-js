@@ -1,4 +1,10 @@
-import Audits from '../../src/audits';
+import chai, { expect } from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+
+chai.use(sinonChai);
+
+import Audits from '../src/audits';
 
 describe('Audits', () => {
   describe('#findAll', () => {
