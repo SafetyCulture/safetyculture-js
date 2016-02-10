@@ -1,5 +1,3 @@
-var 
-
 module.exports = {
     entry  : './lib/safetyculture.js',
     output : {
