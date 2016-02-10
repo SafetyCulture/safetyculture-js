@@ -9,7 +9,7 @@ const DEFAULT_LOGGER = {info: () => {},
 * @param {string} options.token SafetyCulture access token
 * @returns {object} SafetyCulture API Client
 */
-export default function Client({ token, logger = DEFAULT_LOGGER}) {
+export default function Client({ token, logger = DEFAULT_LOGGER }) {
   logger.info(`SafetyCulture Client ${logger}`);
 
   const api = Api({ token });
