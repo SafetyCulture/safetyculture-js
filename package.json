@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/eslint src/ test/",
     "test": "npm run lint && BABEL_ENV=TEST mocha --compilers js:babel-core/register",
     "compile": "babel --presets es2015 -d lib/ src/",
-    "distribute": "npm run prepublish && webpack",
+    "distribute": "npm run prepublish && webpack -p",
     "prepublish": "npm run compile"
   },
   "repository": {
@@ -23,44 +23,26 @@
   "homepage": "https://github.com/safetyculture/safetyculture-js/",
   "devDependencies": {
     "babel-cli": "^6.5.1",
-    "babel-core": "^6.3.0",
-    "babel-eslint": "^5.0.0-beta6",
+    "babel-core": "^6.5.1",
+    "babel-eslint": "^4.1.8",
+    "babel-loader": "^6.2.2",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-rewire": "^1.0.0-beta-3",
-    "babel-preset-es2015": "^6.3.13",
-    "chai": "^3.2.0",
-    "del": "^1.1.1",
+    "babel-preset-es2015": "^6.5.0",
+    "chai": "^3.5.0",
     "eslint": "^1.10.3",
-    "glob": "^5.0.14",
-    "isparta": "^3.0.3",
-    "json-loader": "^0.5.3",
-    "mocha": "^2.1.0",
-    "rewire": "^2.4.0",
-    "sinon": "^1.12.2",
-    "sinon-chai": "^2.7.0",
-    "vinyl-source-stream": "^1.0.0",
-    "webpack": "^1.12.13",
-    "webpack-stream": "^2.1.1"
+    "json-loader": "^0.5.4",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "webpack": "^1.12.13"
   },
   "babelBoilerplateOptions": {
-    "entryFileName": "safetyculture",
-    "mainVarName": "SafetyCulture",
-    "mochaGlobals": [
-      "stub",
-      "spy",
-      "expect",
-      "sandbox",
-      "mock",
-      "useFakeTimers",
-      "useFakeXMLHttpRequest",
-      "useFakeServer"
-    ]
+    "entryFileName": "index",
+    "mainVarName": "SafetyCulture"
   },
   "dependencies": {
-    "babel-template": "^6.3.13",
-    "babel-loader": "^6.2.2",
-    "babel-types": "^6.3.14",
     "lodash": "^3.10.1",
-    "request-promise": "^1.0.2"
+    "request-promise": "^2.0.0"
   }
 }
