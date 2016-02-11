@@ -1,8 +1,9 @@
 {
-  "blacklist": ["useStrict"],
+  "presets": ["es2015"],
+  "plugins": ["add-module-exports"],
   "env": {
-    "development": {
-      "plugins": ["rewire"]
+    "TEST": {
+      "plugins": ["babel-plugin-rewire"]
     }
   }
 }
