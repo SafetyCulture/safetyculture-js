@@ -1,8 +1,0 @@
-{
-  "blacklist": ["useStrict"],
-  "env": {
-    "development": {
-      "plugins": ["rewire"]
-    }
-  }
-}
