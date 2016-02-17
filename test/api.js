@@ -149,5 +149,21 @@ describe('api', () => {
         api.__ResetDependency__('rp');
       });
     });
+
+    it('should encode arrays using querystring', () => {
+      const token = 'testToken';
+      const qs = { pets: ['cat', 'dog'] };
+
+      api.__Rewire__('rp', (opts) => {
+        expect(opts.qs).to.equal(qs);
+        expect(opts.useQuerystring).to.equal(true);
+        return Promise.resolve();
+      });
+
+      api({ token }).get('/test', { qs })
+      .then(() => {
+        api.__ResetDependency__('rp');
+      });
+    });
   });
 });
