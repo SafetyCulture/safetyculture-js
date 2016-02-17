@@ -90,6 +90,22 @@ describe('api', () => {
       });
     });
 
+    it('custom apiUrl', () => {
+      const token = 'testToken';
+      const testEndpoint = '/test';
+      const apiUrl = 'https://super.safetyculture.io';
+
+      api.__Rewire__('rp', ({ uri }) => {
+        expect(uri).to.equal(apiUrl + testEndpoint);
+        return Promise.resolve();
+      });
+
+      api({ token, apiUrl }).post(testEndpoint)
+      .then(() => {
+        api.__ResetDependency__('rp');
+      });
+    });
+
     it('should pass the body of the request', () => {
       const token = 'testToken';
       const body = { test: 'test' };
@@ -141,6 +157,22 @@ describe('api', () => {
 
       api.__Rewire__('rp', (opts) => {
         expect(opts.qs).to.equal(qs);
+        return Promise.resolve();
+      });
+
+      api({ token }).get('/test', { qs })
+      .then(() => {
+        api.__ResetDependency__('rp');
+      });
+    });
+
+    it('should encode arrays using querystring', () => {
+      const token = 'testToken';
+      const qs = { pets: ['cat', 'dog'] };
+
+      api.__Rewire__('rp', (opts) => {
+        expect(opts.qs).to.equal(qs);
+        expect(opts.useQuerystring).to.equal(true);
         return Promise.resolve();
       });
 
