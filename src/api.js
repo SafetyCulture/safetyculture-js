@@ -36,6 +36,7 @@ export default function Api({ token }) {
     headers: {
       'Authorization': `Bearer ${token}`
     },
+    useQuerystring: true,
     json: true
   };
 
