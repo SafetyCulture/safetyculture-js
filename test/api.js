@@ -90,6 +90,22 @@ describe('api', () => {
       });
     });
 
+    it('custom host', () => {
+      const token = 'testToken';
+      const testEndpoint = '/test';
+      const host = 'https://super.safetyculture.io';
+
+      api.__Rewire__('rp', ({ uri }) => {
+        expect(uri).to.equal(host + testEndpoint);
+        return Promise.resolve();
+      });
+
+      api({ token, host }).post(testEndpoint)
+      .then(() => {
+        api.__ResetDependency__('rp');
+      });
+    });
+
     it('should pass the body of the request', () => {
       const token = 'testToken';
       const body = { test: 'test' };

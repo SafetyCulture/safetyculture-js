@@ -11,4 +11,11 @@ describe('Client', () => {
     const client = Client({ token });
     expect(client.audits).to.exist;
   });
+
+  it('should set a custom host', () => {
+    const host = 'https://super.safetyculture.io';
+    const token = 'testToken';
+    const client = Client({ token, host });
+    expect(client.host).to.equal(host);
+  });
 });
