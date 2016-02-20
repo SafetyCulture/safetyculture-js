@@ -9,6 +9,7 @@ export default function Audits(api, logger) {
   return {
     /**
     * Returns all audits, with options.
+    *
     * @param {object} opts Options object
     * @param {string} opts.since Modified since date (ISO datestring)
     * @param {string} opts.order Order of audits, default 'asc'
@@ -31,6 +32,7 @@ export default function Audits(api, logger) {
 
     /**
     * Returns an audit by id
+    *
     * @param {string} id Audit id
     * @returns {Promise} Resolves to requested audit,
     *                    Rejects with an error from API.
