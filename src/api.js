@@ -10,10 +10,10 @@ export const BASE_URL = 'https://api.safetyculture.io';
 * @returns {Promise} Resolves with access token
 *                    Rejects with error if login failed
 */
-export function generateToken(username, password, host = BASE_URL) {
+export function generateToken(username, password, apiUrl = BASE_URL) {
   return rp({
     method: 'POST',
-    uri: host + '/auth',
+    uri: apiUrl + '/auth',
     form: {
       username,
       password,
@@ -31,7 +31,7 @@ export function generateToken(username, password, host = BASE_URL) {
 * @param {string} token Valid token for authorization requests
 * @returns {object} api Api client
 */
-export default function Api({ token, host = BASE_URL }) {
+export default function Api({ token, apiUrl = BASE_URL }) {
   const defaultOptions = {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -50,7 +50,7 @@ export default function Api({ token, host = BASE_URL }) {
     */
     post: (endpoint, options) => rp(_.assign({}, defaultOptions, {
       method: 'POST',
-      uri: host + endpoint
+      uri: apiUrl + endpoint
     }, options)),
 
     /**
@@ -60,7 +60,7 @@ export default function Api({ token, host = BASE_URL }) {
     *                    Rejects with an error from API.
     */
     get: (endpoint, options) => rp(_.assign({}, defaultOptions, {
-      uri: host + endpoint
+      uri: apiUrl + endpoint
     }, options))
   };
 }

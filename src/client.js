@@ -13,11 +13,11 @@ const DEFAULT_LOGGER = {info: () => {},
 *
 * @returns {object} SafetyCulture API Client
 */
-export default function Client({ token, host, logger = DEFAULT_LOGGER }) {
-  const api = Api({ token, host });
+export default function Client({ token, apiUrl, logger = DEFAULT_LOGGER }) {
+  const api = Api({ token, apiUrl });
 
   return {
-    host,
+    apiUrl,
     audits: Audits(api, logger)
   };
 }

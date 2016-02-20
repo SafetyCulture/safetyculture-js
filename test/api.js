@@ -90,17 +90,17 @@ describe('api', () => {
       });
     });
 
-    it('custom host', () => {
+    it('custom apiUrl', () => {
       const token = 'testToken';
       const testEndpoint = '/test';
-      const host = 'https://super.safetyculture.io';
+      const apiUrl = 'https://super.safetyculture.io';
 
       api.__Rewire__('rp', ({ uri }) => {
-        expect(uri).to.equal(host + testEndpoint);
+        expect(uri).to.equal(apiUrl + testEndpoint);
         return Promise.resolve();
       });
 
-      api({ token, host }).post(testEndpoint)
+      api({ token, apiUrl }).post(testEndpoint)
       .then(() => {
         api.__ResetDependency__('rp');
       });

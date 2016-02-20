@@ -13,9 +13,9 @@ describe('Client', () => {
   });
 
   it('should set a custom host', () => {
-    const host = 'https://super.safetyculture.io';
+    const apiUrl = 'https://super.safetyculture.io';
     const token = 'testToken';
-    const client = Client({ token, host });
-    expect(client.host).to.equal(host);
+    const client = Client({ token, apiUrl });
+    expect(client.apiUrl).to.equal(apiUrl);
   });
 });
