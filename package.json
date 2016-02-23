@@ -20,7 +20,7 @@
     "Safety"
   ],
   "author": "Nick Matenaar <nick@prismatik.com.au>",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/safetyculture/safetyculture-js/issues"
   },
