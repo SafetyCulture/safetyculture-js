@@ -14,7 +14,11 @@
     "type": "git",
     "url": "https://github.com/safetyculture/safetyculture-js.git"
   },
-  "keywords": ["SafetyCulture", "iAuditor", "Safety"],
+  "keywords": [
+    "SafetyCulture",
+    "iAuditor",
+    "Safety"
+  ],
   "author": "Nick Matenaar <nick@prismatik.com.au>",
   "license": "Apache 2",
   "bugs": {
@@ -42,6 +46,7 @@
     "mainVarName": "SafetyCulture"
   },
   "dependencies": {
+    "bluebird": "^2.9.33",
     "lodash": "^3.10.1",
     "request-promise": "^2.0.0"
   }
