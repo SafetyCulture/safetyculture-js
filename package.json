@@ -1,6 +1,6 @@
 {
-  "name": "safetyculture",
-  "version": "0.0.1",
+  "name": "@safetyculture/safetyculture",
+  "version": "0.0.2",
   "description": "Javascript SDK for SafetyCulture API",
   "main": "lib/index.js",
   "scripts": {
