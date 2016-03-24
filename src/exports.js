@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import fs from 'fs';
 
 export const DEFAULT_TIMEZONE = 'UTC';
 export const DEFAULT_FORMAT = 'pdf';
@@ -23,10 +24,9 @@ export default function Exports(api, logger) {
     * @returns {Promise} Resolves to successfully created export,
     *                    Rejects with an error from API.
     */
-    create: ({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT }) => {
+    create({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT }) {
       logger.info(`Creating export for ${auditId} (${timezone}, ${format})`);
-      return api.post(`/audits/${auditId}/export`,
-                              { qs: { format, timezone } });
+      return api.post(`/audits/${auditId}/export`, { qs: { format, timezone } });
     },
 
     /**
@@ -37,7 +37,7 @@ export default function Exports(api, logger) {
     * @returns {Promise} Resolves to requested export,
     *                    Rejects with an error from API.
     */
-    findById: ({ auditId, id }) => {
+    findById({ auditId, id }) {
       return api.get(`/audits/${auditId}/exports/${id}`);
     },
 
@@ -49,7 +49,7 @@ export default function Exports(api, logger) {
     * @returns {Promise} Resolves to requested export,
     *                    Rejects with an error from API.
     */
-    get: function({ auditId, id, poll = POLL_TIME, tries = MAX_TRIES}) {
+    get({ auditId, id, poll = POLL_TIME, tries = MAX_TRIES}) {
       let attempts = 1;
 
       let attempt = () => {
@@ -67,6 +67,19 @@ export default function Exports(api, logger) {
       };
 
       return attempt();
+    },
+
+    /**
+    * Download an export
+    *
+    * @param {string} uri Export uri
+    * @param {string} [dir=.] Directory to save to
+    * @returns {Promise} Rejects with an error from API.
+    */
+    download({ uri, dir = '.', filename }) {
+      const targetFilename = filename || uri.match(/\/([^/]+)$/)[1];
+      logger.info(`Downloading export\n   from ${uri}\n   to ${dir}/${targetFilename}`);
+      return api.getUri({ uri, toStream: fs.createWriteStream(`${dir}/${targetFilename}`) });
     }
   };
 }
