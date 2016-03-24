@@ -49,7 +49,7 @@ export default function Exports(api, logger) {
     * @returns {Promise} Resolves to requested export,
     *                    Rejects with an error from API.
     */
-    get({ auditId, id, poll = POLL_TIME, tries = MAX_TRIES}) {
+    get({ auditId, id, poll = POLL_TIME, tries = MAX_TRIES }) {
       let attempts = 1;
 
       let attempt = () => {
@@ -77,9 +77,9 @@ export default function Exports(api, logger) {
     * @returns {Promise} Rejects with an error from API.
     */
     download({ uri, dir = '.', filename }) {
-      const targetFilename = filename || uri.match(/\/([^/]+)$/)[1];
+      const targetFilename = decodeURIComponent(filename || uri.match(/\/([^/]+)$/)[1]);
       logger.info(`Downloading export\n   from ${uri}\n   to ${dir}/${targetFilename}`);
-      return api.getUri({ uri, toStream: fs.createWriteStream(`${dir}/${targetFilename}`) });
+      return api.streamGet(uri, { stream: fs.createWriteStream(`${dir}/${targetFilename}`) });
     }
   };
 }

@@ -13,8 +13,7 @@ client.audits.findAll({ since: '2016-01-01' })
   const audit = audits[0];
   client.exports.create({ auditId: audit.audit_id }).then((auditExport) => {
     client.exports.get({ auditId: audit.audit_id, id: auditExport.id }).then((response) => {
-      client.exports.download({ uri: response.href, dir: '.' })
-      .catch((error) => console.log(error));
+      client.exports.download({ uri: response.href, dir: '.' });
     });
   });
 })

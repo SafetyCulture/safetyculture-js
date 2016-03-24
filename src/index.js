@@ -1,3 +1,4 @@
 import Client from './client';
+import { generateToken } from './api';
 
-export { Client };
+export { Client , generateToken };

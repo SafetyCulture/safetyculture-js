@@ -41,15 +41,14 @@ export default function Api({ token, apiUrl = BASE_URL }) {
     json: true
   };
 
-  const getUri = ({ uri, options, toStream }) => {
-    const params = _.assign({}, defaultOptions, { uri }, options);
-    if (toStream) return request(params).pipe(toStream);
-    return rp(_.assign({}, defaultOptions, { uri }, options));
+  const build = (uri, options) => {
+    return _.assign({}, defaultOptions, { uri }, options);
   };
 
   return {
     /**
     * Posts body to endpoint on SafetyCulture
+    *
     * @param {string} endpoint        The endpoint to post to on SafetyCulture
     * @param {object} [args.options]  Request options
     * @returns {Promise} Resolves to body of response,
@@ -64,26 +63,29 @@ export default function Api({ token, apiUrl = BASE_URL }) {
 
     /**
     * Gets from endpoint on SafetyCulture
+    *
     * @param {string} endpoint         The endpoint to get from on SafetyCulture
     * @param {object} [args.options]   Request options
-    * @param {stream} [args.toStream]  A file stream to write response body to
     * @returns {Promise} Unless write stream is specified.
     *                    Resolves to body of response,
     *                    Rejects with an error from API.
     */
-    get(endpoint, options, toStream) {
-      return getUri({ uri: apiUrl + endpoint, options, toStream });
+    get(endpoint, options) {
+      return rp(build(apiUrl + endpoint, options));
     },
 
     /**
-    * Gets from URI
-    * @param {string} args.uri         The URI to get from
+    * GET output to Stream
+    *
+    * @param {string} uri         The URI to get from
     * @param {object} [args.options]   Request options
-    * @param {stream} [args.toStream]  A file stream to write response body to
+    * @param {stream} [args.stream]  A file stream to write response body to
     * @returns {Promise} Unless write stream is specified.
     *                    Resolves to body of response,
     *                    Rejects with an error from API.
     */
-    getUri
+    streamGet(uri, { options = {}, stream }) {
+      return request(build(uri, options)).pipe(stream);
+    }
   };
 }
