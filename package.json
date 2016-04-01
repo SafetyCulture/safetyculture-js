@@ -49,6 +49,7 @@
   "dependencies": {
     "bluebird": "^2.9.33",
     "lodash": "^3.10.1",
+    "request": "^2.69.0",
     "request-promise": "^2.0.0"
   }
 }
