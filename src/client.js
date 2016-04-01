@@ -4,6 +4,7 @@ import Exports from './exports';
 
 const DEFAULT_LOGGER = {info: () => {},
                         error: () => {}};
+
 /**
 * Generates Client methods based off passed in token
 *
