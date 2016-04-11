@@ -24,9 +24,11 @@ export default function Exports(api, logger) {
     * @returns {Promise} Resolves to successfully created export,
     *                    Rejects with an error from API.
     */
-    create({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT }) {
-      logger.info(`Creating export for ${auditId} (${timezone}, ${format})`);
-      return api.post(`/audits/${auditId}/export`, { qs: { format, timezone } });
+    create({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT, exportProfile }) {
+      logger.info(`Creating export for ${auditId} (${timezone}, ${format}, ${exportProfile})`);
+      const qs = { format, timezone };
+      if (exportProfile) qs.export_profile = exportProfile;
+      return api.post(`/audits/${auditId}/export`, { qs });
     },
 
     /**

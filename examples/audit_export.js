@@ -1,8 +1,17 @@
+/*
+ * Find audits and export the first audit found as a PDF document
+ *
+ * export SAFETYCULTURE_TOKEN=YOUR_API_TOKEN
+ *
+ * ./node_modules/.bin/babel-node  --presets es2015 ./examples/index.js
+ *
+ * To run against an alternative server:
+ * export SAFETYCULTURE_URL=http://localhost:8084
+ */
+
 import { Client } from '../lib/index';
 
 const TOKEN = process.env.SAFETYCULTURE_TOKEN;
-
-// apiUrl is optional and will default to the production API URL
 const URL = process.env.SAFETYCULTURE_URL;
 
 const client = Client({ token: TOKEN, logger: console, apiUrl: URL });
@@ -17,4 +26,4 @@ client.audits.findAll({ since: '2016-01-01' })
     });
   });
 })
-.catch((error) => console.log(error.error.message));
+.catch((error) => console.log(error.stack));

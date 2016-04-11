@@ -1,6 +1,7 @@
 import Api from './api';
 import Audits from './audits';
 import Exports from './exports';
+import ExportProfiles from './export-profiles';
 
 const DEFAULT_LOGGER = {info: () => {},
                         error: () => {}};
@@ -21,6 +22,7 @@ export default function Client({ token, apiUrl, logger = DEFAULT_LOGGER }) {
   return {
     apiUrl,
     exports: Exports(api, logger),
+    exportProfiles: ExportProfiles(api, logger),
     audits: Audits(api, logger)
   };
 }
