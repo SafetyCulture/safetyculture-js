@@ -26,8 +26,8 @@ const URL = process.env.SAFETYCULTURE_URL;
 const client = Client({ token: TOKEN, logger: console, apiUrl: URL });
 
 client.exports.create({ auditId: AUDIT, exportProfile: PROFILE }).then((auditExport) => {
-  client.exports.get({ auditId: AUDIT, id: auditExport.id }).then((response) => {
-    client.exports.download({ uri: response.href, dir: '.' });
+  return client.exports.get({ auditId: AUDIT, id: auditExport.id }).then((response) => {
+    return client.exports.download({ uri: response.href, dir: '.' });
   });
 })
-.catch((error) => console.log(error.stack));
+.catch((error) => console.log('ERROR: ', error.message));

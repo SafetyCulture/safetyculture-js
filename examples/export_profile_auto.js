@@ -53,11 +53,11 @@ client.exportProfiles.findAll()
     const audit = audits[0];
     const templateId = audit.template_id;
     const profile = profileByTemplate(profileList, templateId);
-    client.exports.create({ auditId: audit.audit_id, exportProfile: profile.id }).then((auditExport) => {
-      client.exports.get({ auditId: audit.audit_id, id: auditExport.id }).then((exportsResponse) => {
-        client.exports.download({ uri: exportsResponse.href, dir: '.' });
+    return client.exports.create({ auditId: audit.audit_id, exportProfile: profile.id }).then((auditExport) => {
+      return client.exports.get({ auditId: audit.audit_id, id: auditExport.id }).then((exportsResponse) => {
+        return client.exports.download({ uri: exportsResponse.href, dir: '.' });
       });
     });
   });
 })
-.catch((error) => console.log(error.stack));
+.catch((error) => console.log('ERROR: ', error.message));

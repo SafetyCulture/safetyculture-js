@@ -3,12 +3,13 @@
  *
  * export SAFETYCULTURE_TOKEN=YOUR_API_TOKEN
  *
- * ./node_modules/.bin/babel-node  --presets es2015 ./examples/audit_export.js
+ * ./node_modules/.bin/babel-node  --presets es2015 ./examples/audit_export_to_stream.js
  *
  * To run against an alternative server:
  * export SAFETYCULTURE_URL=http://localhost:8084
  */
 
+import fs from 'fs';
 import { Client } from '../lib/index';
 
 const TOKEN = process.env.SAFETYCULTURE_TOKEN;
@@ -20,9 +21,12 @@ client.audits.findAll({ since: '2016-01-01' })
 .then((audits) => {
   // export and download the first audit found
   const audit = audits[0];
-  return client.exports.create({ auditId: audit.audit_id }).then((auditExport) => {
-    return client.exports.get({ auditId: audit.audit_id, id: auditExport.id }).then((response) => {
-      return client.exports.download({ uri: response.href, dir: '.' });
+  const exporter = client.exports;
+  return exporter.create({ auditId: audit.audit_id }).then((auditExport) => {
+    return exporter.get({ auditId: audit.audit_id, id: auditExport.id }).then((response) => {
+      const filename = exporter.filenameFromURI(response.href);
+      const writeStream = fs.createWriteStream(`./${filename}`);
+      return exporter.download({ uri: response.href, writeStream });
     });
   });
 })

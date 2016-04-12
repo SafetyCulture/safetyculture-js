@@ -1,8 +1,8 @@
 
 /**
-* Generates Export Profiless object with methods using passed api
+* Generates Export Profiles object with methods using passed api
 *
-* @param {object} api Valid api object
+* @param {object} api API object
 * @param {object} logger Logger
 * @returns {object} exports Methods to interact with export profiles on API
 */
