@@ -12,7 +12,7 @@ export default function ExportProfiles(api, logger) {
      * Find metadata for all available export profiles
      *
      * @param   {object} options.params extra options
-     * @param   {array}  options.params.templateIds ids to filter profiles by
+     * @param   {array}  options.params.templates ids to filter profiles by
      * @returns {object} export profile metadata
      *
      * {
@@ -31,8 +31,8 @@ export default function ExportProfiles(api, logger) {
      * }
      */
     findAll({ params } = {}) {
-      const query = params && params.templateIds ? `?${templateIds.map(id => `template=${id}`).join('&')}` : '';
-      const logQuery = query ? 'for ' + templateIds : '';
+      const query = params && params.templates ? `?${params.templates.map(id => `template=${id}`).join('&')}` : '';
+      const logQuery = query ? 'for ' + params.templates : '';
       logger.info(`Finding export profiles ${logQuery}`);
       return api.get(`/export_profiles/search${query}`);
     },
