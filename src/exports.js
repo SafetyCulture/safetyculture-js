@@ -24,9 +24,11 @@ export default function Exports(api, logger) {
     * @returns {Promise} Resolves to successfully created export,
     *                    Rejects with an error from API.
     */
-    create({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT }) {
-      logger.info(`Creating export for ${auditId} (${timezone}, ${format})`);
-      return api.post(`/audits/${auditId}/export`, { qs: { format, timezone } });
+    create({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT, exportProfile }) {
+      logger.info(`Creating export for ${auditId} (${timezone}, ${format}, ${exportProfile})`);
+      const qs = { format, timezone };
+      if (exportProfile) qs.export_profile = exportProfile;
+      return api.post(`/audits/${auditId}/export`, { qs });
     },
 
     /**
@@ -62,7 +64,7 @@ export default function Exports(api, logger) {
               return attempt();
             });
           }
-          return Promise.reject(attempts);
+          return Promise.reject(new Error(`Request to get export timed out. Increasing 'tries' may help. Failed after ${attempts} tries.`));
         });
       };
 
@@ -70,14 +72,32 @@ export default function Exports(api, logger) {
     },
 
     /**
+     * extract and decode a filename from the end of a URI
+     * @param   {string} uri a uri with a filename
+     * @returns {string}     a decoded filename
+     */
+    filenameFromURI(uri) {
+      return decodeURIComponent(uri.match(/\/([^/]+)$/)[1]);
+    },
+
+    /**
     * Download an export
     *
     * @param {string} uri Export uri
     * @param {string} [dir=.] Directory to save to
+    * @param {string} [filename] file to save to
+    * @param {stream} [writeStream] stream to write to
     * @returns {Promise} Rejects with an error from API.
+    *
+    * If no optional arguments are set the downloaded file will be saved to the current
+    * directory with the filename extracted from the end of the URI.
     */
-    download({ uri, dir = '.', filename }) {
-      const targetFilename = decodeURIComponent(filename || uri.match(/\/([^/]+)$/)[1]);
+    download({ uri, dir = '.', filename, writeStream }) {
+      if (writeStream) {
+        logger.info(`Downloading export\n   from ${uri}\n   to writeStream`);
+        return api.streamGet(uri, { stream: writeStream });
+      }
+      const targetFilename = filename || this.filenameFromURI(uri);
       logger.info(`Downloading export\n   from ${uri}\n   to ${dir}/${targetFilename}`);
       return api.streamGet(uri, { stream: fs.createWriteStream(`${dir}/${targetFilename}`) });
     }

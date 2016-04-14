@@ -8,8 +8,7 @@
     "test": "npm run lint && BABEL_ENV=TEST mocha --compilers js:babel-core/register",
     "compile": "babel --presets es2015 -d lib/ src/",
     "distribute": "npm run prepublish && webpack -p",
-    "prepublish": "npm run compile",
-    "example:export": "babel-node  --presets es2015 ./examples/index.js"
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
