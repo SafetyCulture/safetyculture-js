@@ -81,11 +81,22 @@ export default function Api({ token, apiUrl = BASE_URL }) {
     * @param {object} [args.options]   Request options
     * @param {stream} [args.stream]  A file stream to write response body to
     * @returns {Promise} Unless write stream is specified.
-    *                    Resolves to body of response,
-    *                    Rejects with an error from API.
+    *                    Rejects with an error from API or stream.
     */
     streamGet(uri, { options = {}, stream }) {
-      return request(build(uri, options)).pipe(stream);
+      return new Promise((resolve, reject) => {
+        stream.on('finish', () => {
+          return resolve();
+        });
+        stream.on('error', (error) => {
+          return reject(error);
+        });
+        request(build(uri, options))
+        .on('error', (error) => {
+          return reject(error);
+        })
+        .pipe(stream);
+      });
     }
   };
 }
