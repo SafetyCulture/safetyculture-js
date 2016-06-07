@@ -87,7 +87,7 @@ export default function Exports(api, logger) {
     * @param {string} [dir=.] Directory to save to
     * @param {string} [filename] file to save to
     * @param {stream} [writeStream] stream to write to
-    * @returns {Promise} Rejects with an error from API.
+    * @returns {Promise} Rejects with an error from API or stream.
     *
     * If no optional arguments are set the downloaded file will be saved to the current
     * directory with the filename extracted from the end of the URI.
