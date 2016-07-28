@@ -40,7 +40,11 @@ export default function Exports(api, logger) {
     *                    Rejects with an error from API.
     */
     findById({ auditId, id }) {
-      return api.get(`/audits/${auditId}/exports/${id}`);
+      return api.get(`/audits/${auditId}/exports/${id}`).catch((error) => {
+        if (error.statusCode === 404) { // Workaround for ARG-2136
+          return api.get(`/audits/${auditId}/exports/${id}`);
+        }
+      });
     },
 
     /**
@@ -65,7 +69,7 @@ export default function Exports(api, logger) {
             });
           }
           return Promise.reject(new Error(`Request to get export timed out. Increasing 'tries' may help. Failed after ${attempts} tries.`));
-        });
+        }).catch((error) => Promise.reject(error));
       };
 
       return attempt();
