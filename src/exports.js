@@ -25,6 +25,7 @@ export default function Exports(api, logger) {
     *                    Rejects with an error from API.
     */
     create({ auditId, timezone = DEFAULT_TIMEZONE, format = DEFAULT_FORMAT, exportProfile }) {
+      logger.info(`Creating export for ${auditId} (${timezone}, ${format}, ${exportProfile})`);
       const qs = { format, timezone };
       if (exportProfile) qs.export_profile = exportProfile;
       return api.post(`/audits/${auditId}/export`, { qs });
@@ -97,9 +98,11 @@ export default function Exports(api, logger) {
     */
     download({ uri, dir = '.', filename, writeStream }) {
       if (writeStream) {
+        logger.info(`Downloading export\n   from ${uri}\n   to writeStream`);
         return api.streamGet(uri, { stream: writeStream });
       }
       const targetFilename = filename || this.filenameFromURI(uri);
+      logger.info(`Downloading export\n   from ${uri}\n   to ${dir}/${targetFilename}`);
       return api.streamGet(uri, { stream: fs.createWriteStream(`${dir}/${targetFilename}`) });
     }
   };
