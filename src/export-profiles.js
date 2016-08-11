@@ -33,6 +33,7 @@ export default function ExportProfiles(api, logger) {
     findAll({ params } = {}) {
       const query = params && params.templates ? `?${params.templates.map(id => `template=${id}`).join('&')}` : '';
       const logQuery = query ? 'for ' + params.templates : '';
+      logger.info(`Finding export profiles ${logQuery}`);
       return api.get(`/export_profiles/search${query}`);
     },
 
