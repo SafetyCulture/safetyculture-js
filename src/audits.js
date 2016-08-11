@@ -24,7 +24,6 @@ export default function Audits(api, logger) {
         order: order ? order : 'asc'
       }, params ? params : {});
 
-      logger.info(`Search Request: ${JSON.stringify(qs)}`);
 
       return api.get('/audits/search', {qs: qs})
                 .then(body => body.audits);
