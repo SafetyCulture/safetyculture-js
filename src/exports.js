@@ -60,15 +60,15 @@ export default function Exports(api, logger) {
 
       let attempt = () => {
         return this.findById({ auditId, id }).then((response) => {
-          if (response.status === 'SUCCESS') {
-            return response;
-          } else if (response.status === 'IN PROGRESS' && attempts < tries) {
+          if (response.status === 'FAILED') return Promise.reject(response.error);
+          if (response.status === 'SUCCESS') return response;
+          if (response.status === 'IN PROGRESS' && attempts < tries) {
             return Promise.delay(poll).then(() => {
               attempts += 1;
               return attempt();
             });
           }
-          return Promise.reject(new Error(`Request to get export timed out. Increasing 'tries' may help. Failed after ${attempts} tries.`));
+          return Promise.reject(new Error(`Request to get export timed out after ${attempts} attempts.`));
         }).catch((error) => Promise.reject(error));
       };
 
