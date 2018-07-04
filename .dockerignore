@@ -1,0 +1,11 @@
+*
+
+!.babelrc
+!.eslintrc
+!dist
+!examples
+!lib
+!package.json
+!src
+!test
+!webpack.config.js
