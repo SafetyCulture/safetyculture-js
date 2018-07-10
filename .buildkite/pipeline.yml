@@ -1,5 +1,10 @@
+# Note that the TARGET_ECS_SERVICE is required by the multistage docker script
+# This service is not actually a service, we just run the tests in a container
+env:
+  TARGET_ECS_SERVICE: safetyculture-js 
+
 steps:
-  - name: "Test"
-    command: "n lts && npm install && npm test"
+  - name: ":node: Run Tests"
+    command: "/etc/buildkite-agent/buildkite-scripts/ecs-npm-multistage-docker-build.sh -b"
     agents:
-      node: "true"
+      type: aws-builder
