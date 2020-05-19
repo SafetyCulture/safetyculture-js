@@ -1,4 +1,4 @@
-FROM safetyculture/node:8-builder AS builder8
+FROM safetyculture/node:8-builder-stretch AS builder8
 
 ENV HOME /home/safetyculture-js
 
